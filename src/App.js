@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Loader from 'react-loader-spinner';
+import Main from './views/Main';
+import { getQuestionsData } from './dataService';
+import { formatData } from './utils';
+import s from './styles';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+class App extends Component {
+  state = {
+    isQuizStarted: false,
+    questions: [],
+    activeIndex: -1,
+    questionnaire: {},
+    loading: true
+  }
+
+  async componentDidMount() {
+    const response = await getQuestionsData();
+    const { questionnaire, questions } = formatData(response);
+    this.setState({
+      loading: false,
+      questionnaire,
+      questions
+    });
+  }
+
+  updateStartStartedStatus = value => this.setState({ isQuizStarted: value })
+
+  renderLoader = () => (
+    <div className={s.loaderWrapper}>
+      <Loader 
+        type="Triangle"
+        color="#00BFFF"
+        height="60"
+        width="60"
+      />
     </div>
-  );
+  )
+
+  render() {
+    const { loading, questionnaire, questions, isQuizStarted } = this.state;
+    if (loading) {
+      return this.renderLoader();
+    }
+    return (
+      <div className={s.mainWrapper}>
+        <Main
+          questions={questions}
+          isQuizStarted={isQuizStarted}
+          questionnaire={questionnaire}
+          updateStartStartedStatus={this.updateStartStartedStatus}
+        />
+      </div>
+    )
+  }
 }
 
 export default App;
