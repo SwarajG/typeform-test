@@ -42,6 +42,7 @@ class App extends Component {
     if (loading) {
       return this.renderLoader();
     }
+    console.log(questions);
     return (
       <div className={s.mainWrapper}>
         <Main
