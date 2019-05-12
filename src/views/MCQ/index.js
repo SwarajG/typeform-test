@@ -29,7 +29,7 @@ export default class MCQ extends Component {
           multiple: question.multiple
         };
         updateQuestion(action);
-        question.multiple === boolType.false && moveDown(this.context, 500);
+        question.multiple === boolType.false && moveDown(this.context, 250);
       }
     }
   }

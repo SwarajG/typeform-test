@@ -18,7 +18,7 @@ export default class Options extends Component {
       multiple: question.multiple
     };
     updateQuestion(action);
-    moveDown(this.context, 500);
+    moveDown(this.context, 250);
   }
 
   render() {
