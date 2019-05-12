@@ -9,13 +9,13 @@ import { moveDown } from '../../component-helper';
 export default class Options extends Component {
   updateQuestion = (e) => {
     const { updateQuestion } = this.context;
-    const { questionId, choice, multiple } = this.props;
+    const { choice, question } = this.props;
     const action = {
-      id: questionId,
+      id: question.identifier,
       actionType: actions.CHANGE_OPTION,
       selectedOption: choice.value,
       selected: !choice.selected,
-      multiple
+      multiple: question.multiple
     };
     updateQuestion(action);
     moveDown(this.context, 500);

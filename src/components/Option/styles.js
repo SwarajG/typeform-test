@@ -28,6 +28,10 @@ const optionsWrapper = isActive => css`
   ` : `
     border-color: transparent;
   `}
+
+  &:hover {
+    background-color: rgba(0, 58, 81, 0.3);
+  }
 `;
 
 const icon = css`

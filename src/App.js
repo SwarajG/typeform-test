@@ -70,6 +70,15 @@ class App extends Component {
         });
         break;
       }
+      case actions.CHANGE_INPUT_VALUE: {
+        newQuestions = oldQuestions.map((question) => {
+          if (question.identifier === action.id) {
+            question.value = action.value;
+          }
+          return question;
+        });
+        break;
+      }
       default:
         break;
     }

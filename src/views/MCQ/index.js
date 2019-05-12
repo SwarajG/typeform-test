@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getKeyForIndex } from '../../utils';
+import { getKeyForIndex, boolType } from '../../utils';
 import Option from '../../components/Option';
 import Context from '../../utils/context';
 import actions from '../../utils/actions';
@@ -29,7 +29,7 @@ export default class MCQ extends Component {
           multiple: question.multiple
         };
         updateQuestion(action);
-        moveDown(this.context, 500);
+        question.multiple === boolType.false && moveDown(this.context, 500);
       }
     }
   }
@@ -40,10 +40,9 @@ export default class MCQ extends Component {
       <div className={s.pptionsWrapper}>
         {question.choices.map((choice, index) => (
           <Option
-            questionId={question.identifier}
+            question={question}
             choice={choice}
             keyName={getKeyForIndex(index + 1)}
-            multiple={question.multiple}
             key={getKeyForIndex(index + 1)}
           />
         ))}

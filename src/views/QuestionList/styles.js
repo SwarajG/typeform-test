@@ -7,7 +7,7 @@ const questionListWrapper = css`
   height: 100%;
   scroll-behavior: smooth;
 
-  &:before {
+  &:before, &:after {
     content: "";
     display: block;
     width: 100%;
@@ -15,6 +15,12 @@ const questionListWrapper = css`
   }
 `;
 
+const questionWrapper = css`
+  margin-left: 10px;
+  margin-right: 10px;
+`;
+
 export default {
-  questionListWrapper
+  questionListWrapper,
+  questionWrapper
 }

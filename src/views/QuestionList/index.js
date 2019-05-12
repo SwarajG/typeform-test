@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Question from '../Question';
 import Context from '../../utils/context';
-import { moveUp, moveDown } from '../../component-helper';
+import { moveUp, moveDown, awayFromTop } from '../../component-helper';
 import s from './styles';
 
 export default class QuestionList extends Component {
@@ -25,23 +25,29 @@ export default class QuestionList extends Component {
     this.context.updateParentRef(null);
   }
 
-  // onScroll = (e) => {
-  //   const parent = ReactDOM.findDOMNode(this.parent);
-  //   const { activeIndex, updateActiveIndex } = this.context;
-  //   const element = ReactDOM.findDOMNode(this.questionRef[activeIndex]);
-  //   // const awayFromTop = ((window.innerHeight * 40) / 100) - 56;
-  //   // const activeElementPosition = element.offsetTop - awayFromTop;
-  //   const elementHeight = element.offsetHeight;
-  // }
+  onScroll = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    this.questionRefs.forEach((ref, index) => {
+      const element = ReactDOM.findDOMNode(this.questionRefs[index]);;
+      const coords = element.getBoundingClientRect();
+      if (
+        coords.y <= awayFromTop &&
+        coords.y + coords.height > awayFromTop + 48
+      ) {
+        this.context.updateActiveIndex(index);
+      }
+    });
+  }
 
   onKeydown = (e) => {
     if (e.which === 38) {
-      e.stopPropagation();
       e.preventDefault();
+      e.stopPropagation();
       moveUp(this.context);
     } else if (e.which === 40) {
-      e.stopPropagation();
       e.preventDefault();
+      e.stopPropagation();
       moveDown(this.context);
     }
   }
@@ -52,12 +58,13 @@ export default class QuestionList extends Component {
       <div
         className={s.questionListWrapper}
         ref={ref => { this.parent = ref; }}
-        // onScroll={this.onScroll}
+        onScroll={this.onScroll}
       >
         {questions.map((question, index) => (
           <div
             key={question.identifier}
             ref={ref => this.questionRefs[index] = ref}
+            className={s.questionWrapper}
           >
             <Question
               question={question}
