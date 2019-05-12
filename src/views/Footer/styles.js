@@ -23,13 +23,22 @@ const actionButtonWrapper = css`
   display: flex;
 `;
 
-const button = css`
+const button = disabled => css`
   margin-right: 4px;
+  ${disabled ? `
+    opacity: 0.5;
+    cursor: default;
+  ` : ``}
+`;
+
+const icon = css`
+  font-size: 16px;
 `;
 
 export default {
   footer,
   fotterWrapper,
   actionButtonWrapper,
-  button
+  button,
+  icon
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../../components/Button';
 import s from './styles';
+import c from '../../utils/common-style';
 
 export default class StartScreen extends Component {
   componentDidMount() {
@@ -21,14 +22,16 @@ export default class StartScreen extends Component {
   render() {
     const { title, description } = this.props;
     return (
-      <div className={s.contentWrapper}>
-        <h1>{title}</h1>
-        <h2 className={s.description}>{description}</h2>
-        <Button onClick={() => this.props.updateStartStartedStatus(true)}>
-          <div className={s.buttonText}>
-            Let's Begin
-          </div>
-        </Button>
+      <div className={`${c.container} `}>
+        <div className={s.contentWrapper}>
+          <h1 className={s.title}>{title}</h1>
+          <h2 className={s.description}>{description}</h2>
+          <Button onClick={() => this.props.updateStartStartedStatus(true)}>
+            <div className={s.buttonText}>
+              Let's Begin
+            </div>
+          </Button>
+        </div>
       </div>
     )
   }

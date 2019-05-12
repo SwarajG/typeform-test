@@ -8,14 +8,7 @@ const mainWrapper = css`
   bottom: 0;
   background: url('./background.png') no-repeat center center;
   background-size: cover;
-`;
-
-const bodyOverlay = css`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  height: 100%;
 `;
 
 const loaderWrapper = css`
@@ -26,6 +19,5 @@ const loaderWrapper = css`
 
 export default {
   mainWrapper,
-  bodyOverlay,
   loaderWrapper
 };
