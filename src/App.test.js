@@ -1,9 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import MCQ from './views/MCQ';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+import sinon from 'sinon';
+import { shallow } from 'enzyme';
+
+describe('<MCQ />', () => {
+  // it('simulates click events', () => {
+  //   const onButtonClick = sinon.spy();
+  //   const wrapper = shallow(<MCQ question={onButtonClick} />);
+  //   wrapper.find('button').simulate('click');
+  //   expect(onButtonClick).to.have.property('callCount', 1);
+  // });
+
+  // it('simulates keypress events', () => {
+  //   const onButtonClick = sinon.spy();
+  //   const wrapper = shallow(<MCQ onButtonClick={onButtonClick} />);
+  //   wrapper.find('button').simulate('click');
+  //   expect(onButtonClick).to.have.property('callCount', 1);
+  // });
 });
