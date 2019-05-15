@@ -8,7 +8,6 @@ export default class Main extends Component {
   render() {
     const {
       isQuizStarted,
-      updateStartStartedStatus,
       questionnaire,
       questions
     } = this.props;
@@ -17,7 +16,6 @@ export default class Main extends Component {
         <StartScreen
           title={questionnaire.title}
           description={questionnaire.description}
-          updateStartStartedStatus={updateStartStartedStatus}
         />
       );
     }

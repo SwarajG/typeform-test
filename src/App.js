@@ -137,7 +137,6 @@ class App extends Component {
             questions={questions}
             isQuizStarted={isQuizStarted}
             questionnaire={questionnaire}
-            updateStartStartedStatus={this.updateStartStartedStatus}
           />
         </div>
       </Context.Provider>

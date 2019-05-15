@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../../components/Button';
+import Context from '../../utils/context';
 import s from './styles';
 import c from '../../utils/common-style';
 
@@ -15,7 +16,7 @@ export default class StartScreen extends Component {
   listenOnEnter = (e) => {
     const keyCode = e.keyCode;
     if (keyCode === 13) {
-      this.props.updateStartStartedStatus(true);
+      this.context.updateIsQuizStarted(true);
     }
   }
 
@@ -36,3 +37,5 @@ export default class StartScreen extends Component {
     )
   }
 }
+
+StartScreen.contextType = Context;
